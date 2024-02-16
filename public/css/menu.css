@@ -1,0 +1,43 @@
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #effffa;
+  transform: translateX(-100%); /* Initially hidden */
+  height: calc(100vh- 60px);
+  text-align: left;
+  padding: 2rem;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  width: 80%; /* Adjust based on your layout requirements */
+  max-width: 300px;
+}
+
+/* Show menu when 'open' class is added */
+.nav-menu.open {
+  transform: translateX(0);
+}
+
+.nav-menu a {
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2rem 0;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  color: #0d0c1d;
+  text-decoration: none;
+  transition: color 0.3s linear;
+}
+
+.nav-menu a:hover {
+  color: #343078;
+}
+
+@media (max-width: 576px) {
+  .nav-menu a {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}

@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff; /* Adjust the background color as needed */
+  padding: 0 20px;
+  height: 65px;
+  width: 100vw;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.navbar_left,
+.navbar_right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar_left img {
+  margin-right: 20px;
+  margin-left: 80px;
+  height: 70px; /* Adjust the size as needed */
+  width: auto;
+}
+
+.navbar__logo {
+  height: 30px; /* Adjust the size as needed */
+  width: auto;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 20px;
+
+  font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Hover effect for buttons */
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 20px; /* Adjust based on your navbar's right padding */
+  top: 60px; /* Adjust based on your navbar's height */
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #333; /* Text color */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-menu button:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Hover effect for dropdown items */
+}
+
+/* Additional styling for responsive adjustments or aesthetic preferences can be added here */
+.navbar__user-avatar {
+  border-radius: 40%;
+  height: 50px; /* Adjust based on your preference */
+  width: 40px; /* Adjust based on your preference */
+  object-fit: cover; /* Ensures the image covers the area without losing its aspect ratio */
+}

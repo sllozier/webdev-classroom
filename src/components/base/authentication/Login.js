@@ -1,42 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { accountLogin } from "../../../store/reducers/authSlice";
 
 const Login = () => {
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loginSuccess = useSelector((state) => state.auth.loginSuccess);
+  const account = useSelector((state) => state.auth);
 
-  const [state, setState] = useState({
+  const [form, setForm] = useState({
     username: "",
     password: "",
   });
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    dispatch(accountLogin(form));
+  };
+
   const handleChange = (props) => (event) => {
-    setState({
-      ...state,
+    setForm({
+      ...form,
       [props]: event.target.value,
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    await dispatch(
-      accountLogin({
-        username: state.username,
-        password: state.password,
-      })
-    );
-    if (auth.isAdmin) {
-      navigate("/adminDashboard");
-    } else if (!auth.isAdmin) {
-      navigate(`/dashboard/${auth.id}`);
+  useEffect(() => {
+    if (loginSuccess) {
+      navigate(`/dashboard/${account.id}`);
     }
-  };
+  }, [loginSuccess, navigate]);
 
-  console.log("LOGIN STATE", state);
   return (
     <div id="account-login" className="signup-container">
       <h2>Sign In</h2>
@@ -46,7 +41,7 @@ const Login = () => {
           className="form-input"
           name="username"
           type="text"
-          value={state.username}
+          value={form.username}
           onChange={handleChange("username")}
         />
         <label htmlFor="password">Password</label>
@@ -54,7 +49,7 @@ const Login = () => {
           className="form-input"
           name="password"
           type="password"
-          value={state.password}
+          value={form.password}
           onChange={handleChange("password")}
         />
 

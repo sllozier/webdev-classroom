@@ -1,5 +1,5 @@
 import Burger from "./Burger";
 import Navbar from "./Navbar";
-import Menu from "./Menu";
+import BurgerMenu from "./BurgerMenu";
 
-export { Burger, Navbar, Menu };
+export { Burger, Navbar, BurgerMenu };

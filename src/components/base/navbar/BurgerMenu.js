@@ -1,6 +1,6 @@
 import React from "react";
 
-const Menu = ({ open }) => {
+const BurgerMenu = ({ open }) => {
   return (
     <nav className={`nav-menu ${open ? "open" : ""}`}>
       <a href="/">
@@ -24,4 +24,4 @@ const Menu = ({ open }) => {
     </nav>
   );
 };
-export default Menu;
+export default BurgerMenu;

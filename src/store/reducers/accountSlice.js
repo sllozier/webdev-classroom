@@ -122,11 +122,11 @@ export const deleteAccountData = (accountId) => async (dispatch) => {
 export const fetchClasses = (accountId) => async (dispatch) => {
   try {
     console.log("ACCOUNT ID CLASS", accountId);
-    const { data: classList } = await axios.get(
+    const { data: classes } = await axios.get(
       `/api/accounts/${accountId}/classes`,
       {}
     );
-    dispatch(getClasses(classList));
+    dispatch(getClasses(classes));
   } catch (error) {
     console.log("FETCH CLASSES THUNK ERROR", error);
   }

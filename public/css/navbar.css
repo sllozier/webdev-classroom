@@ -16,35 +16,21 @@
   align-items: center;
 }
 
-.navbar_left img {
+/* .navbar_left img {
   margin-right: 20px;
-  margin-left: 80px;
-  height: 70px; /* Adjust the size as needed */
+  margin-left: 20px;
+  height: 70px; 
   width: auto;
+} */
+
+.navbar-left span {
+  font-size: 20px;
 }
 
-.navbar__logo {
-  height: 30px; /* Adjust the size as needed */
+.navbar_logo {
+  margin-left: 20px;
+  height: 70px;
   width: auto;
-}
-
-.icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 0 20px;
-
-  font-size: 1.5rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.icon-button:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Hover effect for buttons */
 }
 
 .dropdown-menu {
@@ -76,7 +62,7 @@
 }
 
 /* Additional styling for responsive adjustments or aesthetic preferences can be added here */
-.navbar__user-avatar {
+.navbar_user-avatar {
   border-radius: 40%;
   height: 50px; /* Adjust based on your preference */
   width: 40px; /* Adjust based on your preference */

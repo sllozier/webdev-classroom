@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import history from "../../utils/history";
 const axios = require("axios");
-import { fetchAccountData } from "./accountSlice";
+import { fetchAccountData, fetchClasses } from "./accountSlice";
 
 // === current approach to user information: === //
 // TOKEN is stored in localStorage
@@ -9,11 +9,17 @@ import { fetchAccountData } from "./accountSlice";
 
 const authSlice = createSlice({
   name: "authSlice",
-  initialState: {},
+  initialState: {
+    user: null,
+    loginSuccess: false,
+  },
   reducers: {
     setAuth: (state, action) => {
       state = action.payload;
       return state;
+    },
+    loginSuccess: (state, action) => {
+      state.loginSuccess = action.payload;
     },
     logout: (state, action) => {
       localStorage.removeItem("token");
@@ -23,7 +29,7 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { setAuth, logout } = authSlice.actions;
+export const { setAuth, loginSuccess, logout } = authSlice.actions;
 
 export const fetchVerifiedAccount = () => {
   return async (dispatch) => {
@@ -35,8 +41,10 @@ export const fetchVerifiedAccount = () => {
             authorization: token,
           },
         });
-        dispatch(fetchAccountData(account.id));
+
         dispatch(setAuth(account));
+        dispatch(loginSuccess(true));
+        // history.push(`/dashboard/${account.id}`);
       }
     } catch (error) {
       console.log("VERIFY ACCOUNT ERROR", error);
@@ -54,7 +62,6 @@ export const accountLogin = (credentials) => {
       );
       window.localStorage.setItem("token", account);
       dispatch(fetchVerifiedAccount());
-      history.push(`/dashboard/${account.id}`);
     } catch (error) {
       console.log("LOGIN ERROR", error);
     }
@@ -75,6 +82,7 @@ export const googleOAuthLogin = (googleUserData) => {
 
       // Dispatch an action to set the user's auth state
       dispatch(fetchAccountData(user.id));
+
       dispatch(setAuth(user));
 
       // Redirect the user to their dashboard or home page

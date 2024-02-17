@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import store from "./store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { RecoilRoot } from "recoil";
 
 //if using bulma or sass, may need to change the styles path above to reflect.
 
@@ -13,7 +14,9 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <GoogleOAuthProvider clientId={`${process.env.GOOGLE_ID}`}>
-        <App />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
       </GoogleOAuthProvider>
     </Provider>
   </BrowserRouter>

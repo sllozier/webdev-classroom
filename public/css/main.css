@@ -3,6 +3,8 @@
 @import url(./burger.css);
 @import url(./menu.css);
 @import url(./navbar.css);
+@import url(./dashboard.css);
+@import url(./classCard.css);
 
 * {
   margin: 0;

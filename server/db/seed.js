@@ -236,13 +236,13 @@ Jujubes I love topping donut biscuit apple pie bonbon soufflé. Pastry sesame sn
     // );
 
     console.log(
-      `Seeding successful!`
-      // "Account Special methods :",
-      // Object.keys(Account.prototype),
-      // "Class Special methods :",
-      // Object.keys(Class.prototype),
-      // "Student Special methods :",
-      // Object.keys(Student.prototype)
+      `Seeding successful!`,
+      "Account Special methods :",
+      Object.keys(Account.prototype),
+      "Class Special methods :",
+      Object.keys(Class.prototype),
+      "Student Special methods :",
+      Object.keys(Student.prototype)
     );
   } catch (error) {
     console.log(`Seeding Problem! Error in seed Function: ${error}`);

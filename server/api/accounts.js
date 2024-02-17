@@ -10,7 +10,7 @@ const {
 const { requireToken, isAdmin } = require("./gateKeeper");
 
 //Account routes
-router.get("/", requireToken, isAdmin, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const accountList = await Account.findAll();
     res.send(accountList);
@@ -20,7 +20,7 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
 });
 
 // User Dashboard (if registered for classes, they will be displayed)
-router.get("/:id", requireToken, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const accountData = await Account.findByPk(req.params.id, {
       include: {
@@ -44,7 +44,7 @@ router.get("/:id", requireToken, async (req, res, next) => {
 //   }
 // });
 
-router.put("/:id", requireToken, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const account = await Account.findByPk(req.account.accountId);
     await account.update(req.body);
@@ -54,7 +54,7 @@ router.put("/:id", requireToken, async (req, res, next) => {
   }
 });
 
-router.delete("/:id", requireToken, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const deleteAccount = await Account.findByPk(req.params.accountId);
     await deleteAccount.destroy();
@@ -67,24 +67,24 @@ router.delete("/:id", requireToken, async (req, res, next) => {
 //user class routes
 //Get all of user's classes
 //front end route should be /dashboard/:id
-router.get("/:id/classes", requireToken, async (req, res, next) => {
+router.get("/:id/classes", async (req, res, next) => {
   try {
-    const classList = await Student.findAll({
-      where: {
-        accountId: req.params.accountId,
-      },
-      include: {
-        model: Class,
-      },
-    });
-    res.send(classList);
+    const account = await Account.findByPk(req.params.id);
+    if (account) {
+      const classes = await account.getClasses({
+        include: [Module],
+      });
+      res.send(classes);
+    } else {
+      res.status(404).send("Account not found");
+    }
   } catch (error) {
     next(error);
   }
 });
 
 //Get single class for user
-router.get("/:id/classes/:classId", requireToken, async (req, res, next) => {
+router.get("/:id/classes/:classId", async (req, res, next) => {
   try {
     const singleClass = await Class.findOne({
       where: {
@@ -100,7 +100,7 @@ router.get("/:id/classes/:classId", requireToken, async (req, res, next) => {
 });
 
 // Add user to class (somehow show class offerings)
-router.put("/:id", requireToken, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const addedClass = await Class.findOne({
       where: {
@@ -115,7 +115,7 @@ router.put("/:id", requireToken, async (req, res, next) => {
 });
 
 //Update class size
-router.put("/:id", requireToken, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const account = await Account.findByPk(req.params.accountId);
     const singleClass = await Class.findOne({
@@ -159,7 +159,7 @@ router.put("/:id", requireToken, async (req, res, next) => {
 });
 
 //remove user from class
-router.delete("/:id", requireToken, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const singleClass = await Class.findOne({
       where: {
@@ -182,7 +182,7 @@ router.delete("/:id", requireToken, async (req, res, next) => {
 //Get single module for single class for user
 router.get(
   "/:id/classes/:classId/:moduleId",
-  requireToken,
+
   async (req, res, next) => {
     try {
       const singleModule = await Module.findByPk(req.params.moduleId, {
@@ -198,7 +198,7 @@ router.get(
 //Get single assignment in module
 router.get(
   "/:id/classes/:moduleId/:assignmentId",
-  requireToken,
+
   async (req, res, next) => {
     try {
       const singleAssignment = await Assignment.findByPk(

@@ -5,7 +5,7 @@ import {
   Login,
   Navbar,
   Burger,
-  Menu,
+  BurgerMenu,
 } from "./base";
 
-export { Home, PageNotFound, Dashboard, Login, Navbar, Burger, Menu };
+export { Home, PageNotFound, Dashboard, Login, Navbar, Burger, BurgerMenu };

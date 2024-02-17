@@ -4,45 +4,58 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   fetchAccountData,
   fetchClasses,
+  fetchAccounts,
 } from "../../../store/reducers/accountSlice";
 import Navbar from "../navbar/Navbar";
+import ClassCard from "../class/ClassCard";
 
 const Dashboard = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  //const accounts = useSelector((state) => state.account.accountList);
   const account = useSelector((state) => state.account.accountData);
-  const classList = useSelector((state) => state.account.classList);
+  const classes = useSelector((state) => state.account.classList);
+
+  // console.log("CLASS LIST", classList);
+
+  // useEffect(() => {
+  //   dispatch(fetchAccountData(params.id));
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(fetchAccounts());
+  // }, []);
 
   useEffect(() => {
     if (params.id) {
-      dispatch(fetchAccountData(params.id))
-        .then(() => {
-          // Assuming fetchAccountData is an async thunk action
-          dispatch(fetchClasses(params.id));
-        })
-        .catch((error) =>
-          console.error("Failed to fetch account data:", error)
-        );
+      dispatch(fetchAccountData(params.id));
+      dispatch(fetchClasses(params.id));
     }
-  }, [dispatch, params.id]);
+  }, [params.id, dispatch]);
 
+  // console.log("ACCOUNT LIST", accounts);
   console.log("ACCOUNT DATA", account);
+  console.log("CLASS LIST", classes);
 
   return (
     <>
       <Navbar />
       <div className="dashboard">
-        {classList.length === 0 ? (
+        {classes.length === 0 ? (
           <div className="dashboard_404">
             No classes found! Join or create one!
           </div>
         ) : (
           <div className="dashboard_classContainer">
-            {classList.map((singleClass) => (
-              <>
-                <h1>{singleClass.name}</h1>
-                <h3>{singleClass.subject}</h3>
-              </>
+            {/* Look back on using a key to display individual data. I can send it using props to my class card or account component. */}
+            {classes.map((singleClass) => (
+              <ClassCard
+                name={singleClass.name}
+                subject={singleClass.subject}
+                id={singleClass.id}
+                style={{ marginRight: 30, marginBottom: 30 }}
+                key={singleClass.id}
+              />
             ))}
           </div>
         )}

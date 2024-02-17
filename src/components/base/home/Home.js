@@ -61,14 +61,14 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="home__container">
+      <div className="home_container">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Classroom_Logo.png"
           alt="Google Classroom"
-          className="home__image"
+          className="home_image"
         />
         <div className="button-container">
-          <button className="home__login" onClick={handleLogin}>
+          <button className="home_login" onClick={handleLogin}>
             Login with Email
           </button>
           <GoogleLogin

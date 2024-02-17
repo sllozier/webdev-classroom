@@ -4,12 +4,12 @@ import axios from "axios";
 const classSlice = createSlice({
   name: "classSlice",
   initialState: {
-    classList: [],
+    classes: [],
     classData: {},
   },
   reducers: {
-    getClassList: (state, action) => {
-      state.classList = action.payload;
+    getClasses: (state, action) => {
+      state.classes = action.payload;
       return state;
     },
     getClassData: (state, action) => {
@@ -25,14 +25,14 @@ const classSlice = createSlice({
 });
 
 export default classSlice.reducer;
-export const { getClassList, getClassData, setErrorMsg } = classSlice.actions;
+export const { getClasses, getClassData, setErrorMsg } = classSlice.actions;
 
 //thunks go here//
 
 export const fetchClassList = () => async (dispatch) => {
   try {
-    const { data: classList } = await axios.get("/api/classes");
-    dispatch(getClassList(classList));
+    const { data: classes } = await axios.get("/api/classes");
+    dispatch(getClasses(classes));
   } catch (error) {
     console.log("FETCH CLASSES ERROR", error);
   }

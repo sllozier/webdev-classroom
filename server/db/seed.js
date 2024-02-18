@@ -38,28 +38,28 @@ const seed = async () => {
       email: "sarahAdmin@email.com",
       isAdmin: true,
       count: 1,
-      picture:
+      image:
         "https://gist.github.com/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/sarahAvatar.png",
     });
 
-    const users = [
-      {
-        fName: "Emilia",
-        lName: "User",
-        userName: "user",
-        password: "password",
-        email: "emiliaUser@email.com",
-        picture:
-          "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/ELL-avatar.svg",
-      },
+    const user1 = await Account.create({
+      fName: "Emilia",
+      lName: "User",
+      userName: "user",
+      password: "password",
+      email: "emiliaUser@email.com",
+      image:
+        "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/ELL-avatar.svg",
+    });
 
+    const users = [
       {
         fName: "Victoria",
         lName: "User",
         userName: "user2",
         password: "password",
         email: "victoriaUser@email.com",
-        picture:
+        image:
           "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/VFL-avatar.svg",
       },
 
@@ -69,7 +69,7 @@ const seed = async () => {
         userName: "user3",
         password: "password",
         email: "lillianUser@email.com",
-        picture:
+        image:
           "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/LML-avatar.svg",
       },
 
@@ -79,7 +79,7 @@ const seed = async () => {
         userName: "user4",
         password: "password",
         email: "leoUser@email.com",
-        picture:
+        image:
           "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/LPL-avatar.svg",
       },
 
@@ -89,7 +89,7 @@ const seed = async () => {
         userName: "user5",
         password: "password",
         email: "robertUser@email.com",
-        picture:
+        image:
           "https://raw.githubusercontent.com/gist/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2f651ce4ee4e82ac830461948a73e544d4c11041/RGL-avatar.svg",
       },
 
@@ -99,6 +99,7 @@ const seed = async () => {
         userName: "user6",
         password: "password",
         email: "nolanUser@email.com",
+        image: "https://fontawesome.com/icons/circle-user?f=classic&s=solid",
       },
 
       {
@@ -107,6 +108,7 @@ const seed = async () => {
         userName: "user7",
         password: "password",
         email: "evanUser@email.com",
+        image: "https://fontawesome.com/icons/circle-user?f=classic&s=solid",
       },
 
       {
@@ -115,6 +117,7 @@ const seed = async () => {
         userName: "user8",
         password: "password",
         email: "liamUser@email.com",
+        image: "https://fontawesome.com/icons/circle-user?f=classic&s=solid",
       },
 
       {
@@ -123,6 +126,7 @@ const seed = async () => {
         userName: "user9",
         password: "password",
         email: "emilyUser@email.com",
+        image: "https://fontawesome.com/icons/circle-user?f=classic&s=solid",
       },
     ];
     const userAccounts = await Promise.all(
@@ -135,12 +139,20 @@ const seed = async () => {
 
     //Announcements
     const announcement1 = await Announcement.create({
-      text: "Check out the extra practice!",
+      authorId: admin.id,
+      content: "Check out the extra practice!",
+      date: new Date(),
+      image: admin.image,
+      creatorName: admin.fName,
       classId: class1.id,
     });
 
     const announcement2 = await Announcement.create({
-      text: "Make sure to watch until the end of each video!",
+      authorId: admin.id,
+      content: "Make sure to watch until the end of each video!",
+      date: new Date(),
+      image: admin.image,
+      creatorName: admin.fName,
       classId: class2.id,
     });
 

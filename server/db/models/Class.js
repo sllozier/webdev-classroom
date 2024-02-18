@@ -26,6 +26,13 @@ const Class = db.define("class", {
       min: 0,
     },
   },
+  image: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      isUrl: true,
+    },
+  },
 });
 
 // Class.afterCreate(async (singleClass) => {

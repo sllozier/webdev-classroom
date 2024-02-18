@@ -9,7 +9,10 @@ const accountSlice = createSlice({
     classList: [],
     classData: {},
     moduleData: {},
+    assignmentList: [],
     assignmentData: {},
+    announcements: [],
+    announcementData: {},
   },
   reducers: {
     getAccountList: (state, action) => {
@@ -41,6 +44,18 @@ const accountSlice = createSlice({
       state.assignmentData = action.payload;
       return state;
     },
+    getAnnouncements: (state, action) => {
+      state.announcements = action.payload;
+      return state;
+    },
+    getAnnouncementData: (state, action) => {
+      state.announcementData = action.payload;
+      return state;
+    },
+    _addAnnouncement: (state, action) => {
+      state.announcements.push(action.payload);
+      return state;
+    },
     setErrorMsg: (state, action) => {
       state.errorMsg = action.payload;
       return state;
@@ -57,6 +72,10 @@ export const {
   getClass,
   getModule,
   getAssignment,
+  getAnnouncements,
+  getAnnouncementData,
+  _addAnnouncement,
+  setErrorMsg,
 } = accountSlice.actions;
 
 //thunks go here//
@@ -121,7 +140,6 @@ export const deleteAccountData = (accountId) => async (dispatch) => {
 //Class
 export const fetchClasses = (accountId) => async (dispatch) => {
   try {
-    console.log("ACCOUNT ID CLASS", accountId);
     const { data: classes } = await axios.get(
       `/api/accounts/${accountId}/classes`,
       {}
@@ -209,5 +227,49 @@ export const fetchAssignmentData =
       dispatch(getAssignment(assignmentData));
     } catch (error) {
       console.log("FETCH ASSIGNMENT DATA ERROR", error);
+    }
+  };
+
+export const fetchAnnouncements = (accountId, classId) => async (dispatch) => {
+  try {
+    const { data: announcements } = await axios.get(
+      `/api/accounts/${accountId}/classes/${classId}/announcements`,
+      accountId,
+      classId
+    );
+    console.log("FETCH ANNOUNCEMENTS", announcements);
+    dispatch(getAnnouncements(announcements));
+  } catch (error) {
+    console.log("FETCH ANNOUNCEMENTS ERROR", error);
+  }
+};
+
+export const fetchAnnouncementData =
+  (accountId, classId, announcementId) => async (dispatch) => {
+    try {
+      const { data: announcementData } = await axios.get(
+        `/api/accounts/${accountId}/classes/${classId}/announcements/${announcementId}`,
+        accountId,
+        classId,
+        announcementId
+      );
+      dispatch(getAnnouncementData(announcementData));
+    } catch (error) {
+      console.log("FETCH ANNOUNCEMENT ERROR", error);
+    }
+  };
+
+export const addAnnouncement =
+  (newAnnouncement, accountId, classId) => async (dispatch) => {
+    try {
+      const { data: newAnnouncementData } = await axios.post(
+        `/api/accounts/${accountId}/classes/${classId}/announcements`,
+        newAnnouncement,
+        accountId,
+        classId
+      );
+      dispatch(_addAnnouncement(newAnnouncementData));
+    } catch (error) {
+      console.log("ADD ANNOUNCEMENT ERROR", error);
     }
   };

@@ -18,7 +18,7 @@
 .burger-div {
   width: 1.5rem;
   height: 0.2rem;
-  background: #333; /* Default color */
+  background: rgba(0, 0, 0, 0.54); /* Default color */
   border-radius: 10px;
   transition: all 0.3s linear;
 }

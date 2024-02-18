@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   fetchAccountData,
   fetchClasses,
-  fetchAccounts,
 } from "../../../store/reducers/accountSlice";
 import Navbar from "../navbar/Navbar";
 import ClassCard from "../class/ClassCard";
@@ -12,19 +11,9 @@ import ClassCard from "../class/ClassCard";
 const Dashboard = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  //const accounts = useSelector((state) => state.account.accountList);
+
   const account = useSelector((state) => state.account.accountData);
   const classes = useSelector((state) => state.account.classList);
-
-  // console.log("CLASS LIST", classList);
-
-  // useEffect(() => {
-  //   dispatch(fetchAccountData(params.id));
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(fetchAccounts());
-  // }, []);
 
   useEffect(() => {
     if (params.id) {
@@ -32,10 +21,6 @@ const Dashboard = () => {
       dispatch(fetchClasses(params.id));
     }
   }, [params.id, dispatch]);
-
-  // console.log("ACCOUNT LIST", accounts);
-  console.log("ACCOUNT DATA", account);
-  console.log("CLASS LIST", classes);
 
   return (
     <>

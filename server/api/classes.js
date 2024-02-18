@@ -14,9 +14,9 @@ router.get("/", async (req, res, next) => {
 });
 
 //preview of single class
-router.get("/:classId", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const singleClass = await Class.findByPk(req.params.classId);
+    const singleClass = await Class.findByPk(req.params.id);
     res.send(singleClass);
   } catch (error) {
     next(error);

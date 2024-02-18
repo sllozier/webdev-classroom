@@ -29,7 +29,7 @@ export const { getClasses, getClassData, setErrorMsg } = classSlice.actions;
 
 //thunks go here//
 
-export const fetchClassList = () => async (dispatch) => {
+export const fetchClasses = () => async (dispatch) => {
   try {
     const { data: classes } = await axios.get("/api/classes");
     dispatch(getClasses(classes));

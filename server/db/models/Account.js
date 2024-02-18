@@ -9,6 +9,11 @@ const Class = require("./Class");
 const SALT_ROUNDS = 5;
 
 const Account = db.define("account", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   fName: {
     type: Sequelize.STRING,
     //unique: true,
@@ -66,9 +71,10 @@ const Account = db.define("account", {
     allowNull: true,
     unique: true,
   },
-  picture: {
+  image: {
     type: Sequelize.STRING,
-    allowNull: true,
+    defaultValue: "https://fontawesome.com/icons/circle-user?f=classic&s=solid",
+    allowNull: false,
     validate: {
       isUrl: true,
     },

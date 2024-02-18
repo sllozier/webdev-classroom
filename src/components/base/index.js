@@ -3,5 +3,17 @@ import { Dashboard } from "./account";
 import { Login } from "./authentication";
 import PageNotFound from "./PageNotFound";
 import { Navbar, Burger, BurgerMenu } from "./navbar";
+import { ClassCard, Class, Announcement } from "./class";
 
-export { Home, PageNotFound, Dashboard, Login, Navbar, Burger, BurgerMenu };
+export {
+  Home,
+  PageNotFound,
+  Dashboard,
+  Login,
+  Navbar,
+  Burger,
+  BurgerMenu,
+  ClassCard,
+  Class,
+  Announcement,
+};

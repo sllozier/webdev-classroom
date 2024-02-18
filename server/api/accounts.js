@@ -86,11 +86,7 @@ router.get("/:id/classes", async (req, res, next) => {
 //Get single class for user
 router.get("/:id/classes/:classId", async (req, res, next) => {
   try {
-    const singleClass = await Class.findOne({
-      where: {
-        accountId: req.params.accountId,
-        classId: req.params.classId,
-      },
+    const singleClass = await Class.findByPk(req.params.classId, {
       include: [Announcement, Module],
     });
     res.send(singleClass);
@@ -181,7 +177,7 @@ router.delete("/:id", async (req, res, next) => {
 
 //Get single module for single class for user
 router.get(
-  "/:id/classes/:classId/:moduleId",
+  "/:id/classes/:classId/module/:moduleId",
 
   async (req, res, next) => {
     try {
@@ -197,7 +193,7 @@ router.get(
 
 //Get single assignment in module
 router.get(
-  "/:id/classes/:moduleId/:assignmentId",
+  "/:id/classes/module/:moduleId/assignments/:assignmentId",
 
   async (req, res, next) => {
     try {
@@ -210,6 +206,72 @@ router.get(
         }
       );
       res.send(singleAssignment);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.get("/:id/classes/:classId/announcements", async (req, res, next) => {
+  try {
+    const announcements = await Announcement.findAll({
+      where: {
+        classId: req.params.classId,
+      },
+    });
+
+    res.send(announcements);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get(
+  "/:id/classes/:classId/announcements/:announcementId",
+  async (req, res, next) => {
+    try {
+      const announcement = await Announcement.findByPk(
+        req.params.announcementId
+      );
+      res.send(announcement);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post("/:id/classes/:classId/announcements", async (req, res, next) => {
+  try {
+    const newAnnouncement = await Announcement.create(req.body);
+    res.send(newAnnouncement);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put(
+  "/:id/classes/:classId/annoucements/:announcementId",
+  async (req, res, next) => {
+    try {
+      const updatedAnnouncement = await Announcement.findByPk(
+        req.params.announcementId
+      );
+      await updatedAnnouncement.update(req.body);
+      res.send(updatedAnnouncement);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.delete(
+  "/:id/classes/:classId/announcements/:announcementId",
+  async (req, res, next) => {
+    try {
+      const deletedAnnouncement = await Announcement.findByPk(
+        req.params.announcementId
+      );
+      await deletedAnnouncement.destroy();
     } catch (error) {
       next(error);
     }

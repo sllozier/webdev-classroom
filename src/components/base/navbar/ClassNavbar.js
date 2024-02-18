@@ -46,8 +46,8 @@ const Navbar = () => {
             alt="Logo"
             className="navbar_logo"
           />
-          <span className="nav-span">Classroom</span>
         </Link>
+        <span>Classroom</span>
       </div>
       <div className="navbar_right">
         <IconButton

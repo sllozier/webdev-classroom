@@ -1,0 +1,42 @@
+.announcement {
+  width: 100%;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #adadad;
+  margin-bottom: 20px;
+}
+
+.announcement_infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.announcement_infoSection {
+  display: flex;
+  align-items: center;
+}
+
+.announcement_nameAndDate {
+  margin-left: 10px;
+}
+
+.announcement_name {
+  font-weight: 600;
+}
+
+.announcement_date {
+  color: #424242;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.announcement_imageContainer > img {
+  height: 50px;
+  width: 50px;
+  border-radius: 9999px;
+}
+
+.announcement_content {
+  margin-top: 15px;
+}

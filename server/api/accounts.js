@@ -175,6 +175,27 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+//Modules
+//get all modules
+router.get(
+  "/:id/classes/:classId/modules",
+
+  async (req, res, next) => {
+    try {
+      //console.log("MODULES ROUTE", req.params.classId);
+      const modules = await Module.findAll({
+        where: {
+          classId: req.params.classId,
+        },
+      });
+      console.log("MODULES ROUTE", modules);
+      res.send(modules);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 //Get single module for single class for user
 router.get(
   "/:id/classes/:classId/module/:moduleId",

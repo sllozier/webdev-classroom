@@ -1,38 +1,33 @@
 .navbar {
+  width: 100vw;
+  height: 65px;
+  border-bottom: 1px solid #dcdcdc;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #fff; /* Adjust the background color as needed */
   padding: 0 20px;
-  height: 65px;
-  width: 100vw;
-  border-bottom: 1px solid #dcdcdc;
+  align-items: center;
 }
 
 .navbar_left,
 .navbar_right {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
-/* .navbar_left img {
+/* .navbar__left img {
   margin-right: 20px;
   margin-left: 20px;
-  height: 70px; 
-  width: auto;
 } */
 
-.navbar-left span {
+.navbar_left span {
   font-size: 20px;
 }
-.navbar-left a {
-  text-decoration: none;
-}
+
 .navbar_logo {
+  width: 100px;
+  margin-right: 20px;
   margin-left: 20px;
-  height: 70px;
-  width: auto;
 }
 
 .nav-span {
@@ -42,19 +37,23 @@
   line-height: 1.75rem;
   color: #5f6368;
 }
-.dropdown-menu {
+
+.nav-span:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+/* .dropdown-menu {
   position: absolute;
-  right: 20px; /* Adjust based on your navbar's right padding */
-  top: 60px; /* Adjust based on your navbar's height */
+  right: 20px; 
+  top: 60px; 
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Ensure it's above other content */
-}
+  z-index: 1000; 
+} */
 
-.dropdown-menu button {
+/* .dropdown-menu button {
   display: block;
   width: 100%;
   background: none;
@@ -62,13 +61,13 @@
   text-align: left;
   padding: 8px 10px;
   cursor: pointer;
-  color: #333; /* Text color */
+  color: #333; 
   transition: background-color 0.2s ease-in-out;
 }
 
 .dropdown-menu button:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Hover effect for dropdown items */
-}
+  background-color: rgba(0, 0, 0, 0.05); 
+} */
 
 /* Additional styling for responsive adjustments or aesthetic preferences can be added here */
 .navbar_user-avatar {

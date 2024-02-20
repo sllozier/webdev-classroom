@@ -158,17 +158,32 @@ const seed = async () => {
 
     //Modules
     const module1 = await Module.create({
-      name: "Getting Started",
+      name: "Intro to HTML",
+      isComplete: false,
+      image:
+        "https://s3.amazonaws.com/learndotresources/workshop_artwork/1570474826360.jpeg",
+      description:
+        "HTML (HyperText Markup Language) is the language that gives web pages form and structure! Learn the basic building blocks of HTML so that you can start building your very own web pages!",
       classId: class1.id,
     });
 
     const module2 = await Module.create({
-      name: "Getting Started",
-      classId: class2.id,
+      name: "Intro to CSS",
+      isComplete: false,
+      image:
+        "https://s3.amazonaws.com/learndotresources/workshop_artwork/1570474869428.jpeg",
+      description:
+        "CSS (Cascading Style Sheets) give style and substance to your web pages! Learn the basics of CSS and start giving your web pages some shine!",
+      classId: class1.id,
     });
 
     const module3 = await Module.create({
-      name: "System Setup",
+      name: "Build Your Own Business Card",
+      isComplete: false,
+      image:
+        "https://s3.amazonaws.com/learndotresources/workshop_artwork/1580920776110.jpeg",
+      description:
+        "Apply your new HTML and CSS knowledge and make a personalized business card!",
       classId: class1.id,
     });
 

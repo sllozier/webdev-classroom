@@ -14,6 +14,20 @@ const Module = db.define("module", {
     type: Sequelize.BOOLEAN,
     default: false,
   },
+  image: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      isUrl: true,
+    },
+  },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
 });
 
 module.exports = Module;

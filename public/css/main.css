@@ -7,6 +7,7 @@
 @import url(./classCard.css);
 @import url(./class.css);
 @import url(./announcement.css);
+@import url(./drawer.css);
 
 * {
   margin: 0;

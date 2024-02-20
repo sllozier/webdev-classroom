@@ -1,8 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, IconButton, MenuItem, Menu } from "@material-ui/core";
-import { Add, Apps, Menu as MenuIcon } from "@material-ui/icons";
+import {
+  Avatar,
+  IconButton,
+  MenuItem,
+  Menu,
+  Box,
+  Drawer,
+  List,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Button,
+  SwipeableDrawer,
+  ListSubheader,
+} from "@material-ui/core";
+import {
+  SettingsOutlined,
+  ArchiveOutlined,
+  SchoolOutlined,
+  CalendarToday,
+  Home,
+  Inbox,
+  Mail,
+  Add,
+  Apps,
+  Menu as BurgerIcon,
+} from "@material-ui/icons";
 import { logout } from "../../../store/reducers/authSlice";
 import { fetchAccountData } from "../../../store/reducers/accountSlice";
 import { createDialogAtom, joinDialogAtom } from "../../../utils/atoms";
@@ -18,7 +45,72 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [createOpened, setCreateOpened] = useRecoilState(createDialogAtom);
   const [joinOpened, setJoinOpened] = useRecoilState(joinDialogAtom);
+  const list = ["Home", "Calendar", "Enrolled", "Archived", "Settings"];
+  const position = "left";
+  const [drawerState, setDrawerState] = useState({
+    [position]: false,
+  });
 
+  const toggleDrawer = (side, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setDrawerState({ ...drawerState, [side]: open });
+  };
+
+  const drawerList = (side) => (
+    <div
+      className={list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader component="div" id="nested-list-subheader">
+            {drawerState[position]}
+          </ListSubheader>
+        }
+      >
+        {["Home", "Calendar"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <Home /> : <CalendarToday />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["Enrolled"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              <SchoolOutlined />
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["Archived", "Settings"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <ArchiveOutlined /> : <SettingsOutlined />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
   useEffect(() => {
     if (account.id) dispatch(fetchAccountData(account.id));
   }, [account.id]);
@@ -39,10 +131,26 @@ const Navbar = () => {
   return account.id ? (
     <div className="navbar">
       <div className="navbar_left">
-        <Burger open={open} setOpen={setOpen} />
+        <IconButton
+          area-label="Open drawer"
+          edge="start"
+          onClick={toggleDrawer(position, true)}
+          className="simple-menu"
+        >
+          <BurgerIcon />
+        </IconButton>
+        <SwipeableDrawer
+          anchor={position}
+          open={drawerState[position]}
+          onClose={toggleDrawer(position, false)}
+          onOpen={toggleDrawer(position, true)}
+        >
+          {drawerList(position)}
+        </SwipeableDrawer>
+        {/* <Burger open={open} setOpen={setOpen} /> */}
         <Link to="/">
           <img
-            src="https://gist.github.com/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/2583b15e280ce7711443298efd3f2139e55c2b2e/cc_color_trans_logo.png"
+            src="https://gist.github.com/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/fa0ba8c19c2bed5e992254938f02107112682dc8/cc_tech_color_shortrect_trans.png"
             alt="Logo"
             className="navbar_logo"
           />
@@ -85,7 +193,7 @@ const Navbar = () => {
           </MenuItem>
         </Menu>
       </div>
-      <BurgerMenu open={open} setOpen={setOpen} />
+      {/* <BurgerMenu open={open} setOpen={setOpen} /> */}
     </div>
   ) : (
     <Link to="/login">

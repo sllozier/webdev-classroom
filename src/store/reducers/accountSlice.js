@@ -8,6 +8,7 @@ const accountSlice = createSlice({
     accountData: {},
     classList: [],
     classData: {},
+    moduleList: [],
     moduleData: {},
     assignmentList: [],
     assignmentData: {},
@@ -35,6 +36,9 @@ const accountSlice = createSlice({
     getClass: (state, action) => {
       state.classData = action.payload;
       return state;
+    },
+    getModuleList: (state, action) => {
+      state.moduleList = action.payload;
     },
     getModule: (state, action) => {
       state.moduleData = action.payload;
@@ -70,6 +74,7 @@ export const {
   _deleteAccount,
   getClasses,
   getClass,
+  getModuleList,
   getModule,
   getAssignment,
   getAnnouncements,
@@ -200,11 +205,25 @@ export const quitClass = (accountId, classId) => async (dispatch) => {
   }
 };
 
+export const fetchModules = (accountId, classId) => async (dispatch) => {
+  try {
+    const { data: moduleList } = await axios.get(
+      `/api/accounts/${accountId}/classes/${classId}/modules`,
+      accountId,
+      classId
+    );
+    console.log("GET MODULES THUNK", moduleList);
+    dispatch(getModuleList(moduleList));
+  } catch (error) {
+    console.log("FETCH MODULES ERROR", error);
+  }
+};
+
 export const fetchModuleData =
   (accountId, classId, moduleId) => async (dispatch) => {
     try {
       const { data: moduleData } = await axios.get(
-        `/api/accounts/${accountId}/classes/${classId}/${moduleId}`,
+        `/api/accounts/${accountId}/classes/${classId}/modules/${moduleId}`,
         accountId,
         classId,
         moduleId
@@ -219,7 +238,7 @@ export const fetchAssignmentData =
   (accountId, moduleId, assignmentId) => async (dispatch) => {
     try {
       const { data: assignmentData } = await axios.get(
-        `/api/accounts/${accountId}/${moduleId}/${assignmentId}`,
+        `/api/accounts/${accountId}/modules/${moduleId}/assignments/${assignmentId}`,
         accountId,
         moduleId,
         assignmentId

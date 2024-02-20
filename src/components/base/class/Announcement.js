@@ -3,7 +3,7 @@ import { MoreVert } from "@material-ui/icons";
 import React from "react";
 
 const Announcement = ({ content, date, image, name }) => {
-  console.log("ANNOUNCEMENT INFO", image, name, date, content);
+  console.log("ANNOUN COMP");
   return (
     <div className="announcement">
       <div className="announcement_infoContainer">

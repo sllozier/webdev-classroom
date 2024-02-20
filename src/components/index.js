@@ -9,6 +9,7 @@ import {
   ClassCard,
   Class,
   Announcement,
+  Module,
 } from "./base";
 
 export {
@@ -22,4 +23,5 @@ export {
   ClassCard,
   Class,
   Announcement,
+  Module,
 };

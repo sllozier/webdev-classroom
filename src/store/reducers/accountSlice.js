@@ -44,6 +44,9 @@ const accountSlice = createSlice({
       state.moduleData = action.payload;
       return state;
     },
+    getAssignmentList: (state, action) => {
+      state.assignmentList = action.payload;
+    },
     getAssignment: (state, action) => {
       state.assignmentData = action.payload;
       return state;
@@ -76,6 +79,7 @@ export const {
   getClass,
   getModuleList,
   getModule,
+  getAssignmentList,
   getAssignment,
   getAnnouncements,
   getAnnouncementData,
@@ -99,7 +103,6 @@ export const fetchAccounts = () => {
 
 export const fetchAccountData = (accountId) => async (dispatch) => {
   try {
-    console.log("REDUX ACCOUNT ID", accountId);
     const token = window.localStorage.getItem("token");
     const { data: accountData } = await axios.get(
       `/api/accounts/${accountId}`,
@@ -162,6 +165,7 @@ export const fetchClassData = (accountId, classId) => async (dispatch) => {
       accountId,
       classId
     );
+    console.log("FETCH CLASS");
     dispatch(getClass(classData));
   } catch (error) {
     console.log("FETCH CLASS DATA ERROR", error);
@@ -212,34 +216,49 @@ export const fetchModules = (accountId, classId) => async (dispatch) => {
       accountId,
       classId
     );
-    console.log("GET MODULES THUNK", moduleList);
+    console.log("FETCH MODS");
     dispatch(getModuleList(moduleList));
   } catch (error) {
     console.log("FETCH MODULES ERROR", error);
   }
 };
 
-export const fetchModuleData =
-  (accountId, classId, moduleId) => async (dispatch) => {
-    try {
-      const { data: moduleData } = await axios.get(
-        `/api/accounts/${accountId}/classes/${classId}/modules/${moduleId}`,
-        accountId,
-        classId,
-        moduleId
-      );
-      dispatch(getModule(moduleData));
-    } catch (error) {
-      console.log("FETCH MODULE DATA ERROR", error);
-    }
-  };
+export const fetchModuleData = (accountId, moduleId) => async (dispatch) => {
+  try {
+    const { data: moduleData } = await axios.get(
+      `/api/accounts/${accountId}/modules/${moduleId}`,
+      accountId,
+      moduleId
+    );
+    console.log("FETCH MOD DATA");
+    dispatch(getModule(moduleData));
+  } catch (error) {
+    console.log("FETCH MODULE DATA ERROR", error);
+  }
+};
+
+export const fetchAssignments = (accountId, moduleId) => async (dispatch) => {
+  try {
+    console.log("FETCH ASSIGNS", accountId, moduleId);
+    const { data: assignmentList } = await axios.get(
+      `/api/accounts/${accountId}/modules/${moduleId}/assignments`,
+      accountId,
+      moduleId
+    );
+    console.log("FETCH ASSIGNS");
+    dispatch(getAssignmentList(assignmentList));
+  } catch (error) {
+    console.log("FETCH ASSIGNMENTS ERROR", error);
+  }
+};
 
 export const fetchAssignmentData =
   (accountId, moduleId, assignmentId) => async (dispatch) => {
     try {
       const { data: assignmentData } = await axios.get(
-        `/api/accounts/${accountId}/modules/${moduleId}/assignments/${assignmentId}`,
+        `/api/accounts/${accountId}/classes/${classId}/modules/${moduleId}/assignments/${assignmentId}`,
         accountId,
+        classId,
         moduleId,
         assignmentId
       );
@@ -256,7 +275,7 @@ export const fetchAnnouncements = (accountId, classId) => async (dispatch) => {
       accountId,
       classId
     );
-    console.log("FETCH ANNOUNCEMENTS", announcements);
+
     dispatch(getAnnouncements(announcements));
   } catch (error) {
     console.log("FETCH ANNOUNCEMENTS ERROR", error);

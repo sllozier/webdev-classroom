@@ -3,7 +3,7 @@ import { Dashboard } from "./account";
 import { Login } from "./authentication";
 import PageNotFound from "./PageNotFound";
 import { Navbar, Burger, BurgerMenu } from "./navbar";
-import { ClassCard, Class, Announcement } from "./class";
+import { ClassCard, Class, Announcement, Module } from "./class";
 
 export {
   Home,
@@ -16,4 +16,5 @@ export {
   ClassCard,
   Class,
   Announcement,
+  Module,
 };

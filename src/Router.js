@@ -7,6 +7,7 @@ import {
   Dashboard,
   Navbar,
   Class,
+  Module,
 } from "./components";
 
 //import all components here
@@ -19,6 +20,7 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard/:id" element={<Dashboard />} />
       <Route path="/classes/:id" element={<Class />} />
+      <Route path="/modules/:id" element={<Module />} />
       {/* More routes go down here */}
     </Routes>
   );

@@ -35,8 +35,7 @@ import { logout } from "../../../store/reducers/authSlice";
 import { fetchAccountData } from "../../../store/reducers/accountSlice";
 import { createDialogAtom, joinDialogAtom } from "../../../utils/atoms";
 import { useRecoilState } from "recoil";
-import Burger from "./Burger";
-import BurgerMenu from "./BurgerMenu";
+import MiniDrawer from "./MiniDrawer";
 
 const ClassNavbar = ({ singleClass }) => {
   const account = useSelector((state) => state.auth);
@@ -46,105 +45,7 @@ const ClassNavbar = ({ singleClass }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [createOpened, setCreateOpened] = useRecoilState(createDialogAtom);
   const [joinOpened, setJoinOpened] = useRecoilState(joinDialogAtom);
-  const list = ["Home", "Calendar", "Enrolled", "Archived", "Settings"];
-  const position = "left";
-  const [drawerState, setDrawerState] = useState({
-    [position]: false,
-  });
 
-  const toggleDrawer = (side, open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setDrawerState({ ...drawerState, [side]: open });
-  };
-
-  const drawerList = (side) => (
-    <div
-      className={list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            {drawerState[position]}
-          </ListSubheader>
-        }
-      >
-        {/* {["Home", "Calendar"].map((text, index) => (
-          <ListItem key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? (
-                <Home onClick={listNav(text)} />
-              ) : (
-                <CalendarToday />
-              )}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
-        <ListItem
-          key="Home"
-          onClick={() => navigate(`/dashboard/${account.id}`)}
-        >
-          <ListItemIcon>
-            <Home />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem
-          key="Calendar"
-          onClick={() => navigate(`/dashboard/${account.id}`)}
-        >
-          <ListItemIcon>
-            <CalendarToday />
-          </ListItemIcon>
-          <ListItemText primary="Calendar" />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem
-          key="Enrolled"
-          onClick={() => navigate(`/dashboard/${account.id}`)}
-        >
-          <ListItemIcon>
-            <SchoolOutlined />
-          </ListItemIcon>
-          <ListItemText primary="Enrolled" />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem
-          key="Archived"
-          onClick={() => navigate(`/dashboard/${account.id}`)}
-        >
-          <ListItemIcon>
-            <ArchiveOutlined />
-          </ListItemIcon>
-          <ListItemText primary="Archived" />
-        </ListItem>
-        <ListItem
-          key="Settings"
-          onClick={() => navigate(`/dashboard/${account.id}`)}
-        >
-          <ListItemIcon>
-            <SettingsOutlined />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
-      </List>
-    </div>
-  );
   useEffect(() => {
     if (account.id) dispatch(fetchAccountData(account.id));
   }, [account.id]);
@@ -162,27 +63,13 @@ const ClassNavbar = ({ singleClass }) => {
     setAnchorEl(null);
   };
 
+  console.log("CLASS NAV");
+
   return account.id ? (
     <div className="navbar">
       <div className="navbar_left">
-        <IconButton
-          area-label="Open drawer"
-          edge="start"
-          onClick={toggleDrawer(position, true)}
-          className="simple-menu"
-        >
-          <BurgerIcon />
-        </IconButton>
-        <SwipeableDrawer
-          anchor={position}
-          open={drawerState[position]}
-          onClose={toggleDrawer(position, false)}
-          onOpen={toggleDrawer(position, true)}
-        >
-          {drawerList(position)}
-        </SwipeableDrawer>
-        {/* <Burger open={open} setOpen={setOpen} /> */}
-        <Link to="/">
+        <MiniDrawer id={account.id} />
+        <Link to={`/dashboard/${account.id}`}>
           <img
             src="https://gist.github.com/sllozier/60ba86e5e2eaa1816d19b2b74e9df67c/raw/fa0ba8c19c2bed5e992254938f02107112682dc8/cc_tech_color_shortrect_trans.png"
             alt="Logo"

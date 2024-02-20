@@ -1,0 +1,38 @@
+/* MiniDrawer.css */
+.miniDrawer {
+  display: flex;
+}
+
+.drawerOpen {
+  width: 240px;
+}
+
+.drawerClose {
+  width: 73px;
+  overflow-x: hidden;
+}
+
+.appBarShift {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+}
+
+.menuButton {
+  margin-right: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px;
+}

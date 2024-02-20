@@ -7,7 +7,10 @@
 @import url(./classCard.css);
 @import url(./class.css);
 @import url(./announcement.css);
-@import url(./drawer.css);
+/* @import url(./drawer.css);
+@import url(./scrollbar.css); */
+@import url(./minidrawer.css);
+@import url(./tabs.css);
 
 * {
   margin: 0;

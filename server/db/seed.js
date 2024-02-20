@@ -217,33 +217,36 @@ Jujubes I love topping donut biscuit apple pie bonbon soufflé. Pastry sesame sn
       moduleId: module1.id,
     });
     const assignment2Markdown = `
-    ### Computer Basics
 
-    I love bonbon gingerbread candy liquorice I love lollipop. Chupa chups ice cream lemon drops donut I love cupcake chupa chups croissant. Sesame snaps brownie candy macaroon jujubes marshmallow candy canes cake. 
+### Computer Basics
+
+I love bonbon gingerbread candy liquorice I love lollipop. Chupa chups ice cream lemon drops donut I love cupcake chupa chups croissant. Sesame snaps brownie candy macaroon jujubes marshmallow candy canes cake. 
+        
+Click to watch:
+        
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O-rM34RBhWw?si=0yKlOqcSh9QpiS7i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        
+        
+Dragée gingerbread jelly beans I love wafer halvah. Carrot cake lemon drops marzipan croissant tart cheesecake I love gummi bears tootsie roll. Tart dragée danish I love sweet roll pastry marshmallow candy canes. Chupa chups marshmallow jelly oat cake pudding chocolate. Jelly-o caramels donut sweet roll toffee jujubes bear claw I love I love.
     
-    Click to watch:
+<iframe height="300" style="width: 100%;" scrolling="no" title="Puppy Factory Refactor" src="https://codepen.io/sllozier/embed/preview/OJqGoyw?default-tab=html%2Cresult&editable=true" frameborder="0" allowfullscreen>
     
-    [![Watch the video](http://i3.ytimg.com/vi/O-rM34RBhWw/hqdefault.jpg)](https://youtu.be/O-rM34RBhWw)
-    
-    
-    Dragée gingerbread jelly beans I love wafer halvah. Carrot cake lemon drops marzipan croissant tart cheesecake I love gummi bears tootsie roll. Tart dragée danish I love sweet roll pastry marshmallow candy canes. Chupa chups marshmallow jelly oat cake pudding chocolate. Jelly-o caramels donut sweet roll toffee jujubes bear claw I love I love.
-    
-    Click for codepen:
-    
-    [![code-pen](https://gist.github.com/sllozier/e161dd9e93e25c9d2d8b6529f1970ccd/raw/a4f8c764c30f0f092cbd79bf4a294e0fef954e44/obj-codepen2.png)](https://codepen.io/FullstackAcademy/pen/yEVryM)
-    
-    Caramels brownie muffin I love oat cake. Fruitcake apple pie pudding toffee dragée marzipan dessert pie. Carrot cake jelly beans jelly-o I love cotton candy caramels. Tiramisu muffin I love tart marshmallow cotton candy sugar plum muffin wafer. Pastry cake icing jujubes wafer. Lemon drops I love tootsie roll bear claw jelly beans shortbread bear claw cake. Sesame snaps cotton candy biscuit halvah lollipop ice cream. I love bear claw jelly beans cotton candy topping. Chocolate cake I love cake dessert chocolate cotton candy danish donut. Jelly-o topping dragée gummies tootsie roll carrot cake ice cream jelly-o dessert.
-    
-    **Croissant candy cheesecake I love biscuit cookie halvah danish muffin.**
-    
+See the Pen <a href="https://codepen.io/sllozier/pen/OJqGoyw">Puppy Factory Refactor</a> by Sarah Lozier (<a href="https://codepen.io/sllozier">@sllozier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+        
+Caramels brownie muffin I love oat cake. Fruitcake apple pie pudding toffee dragée marzipan dessert pie. Carrot cake jelly beans jelly-o I love cotton candy caramels. Tiramisu muffin I love tart marshmallow cotton candy sugar plum muffin wafer. Pastry cake icing jujubes wafer. Lemon drops I love tootsie roll bear claw jelly beans shortbread bear claw cake. Sesame snaps cotton candy biscuit halvah lollipop ice cream. I love bear claw jelly beans cotton candy topping. Chocolate cake I love cake dessert chocolate cotton candy danish donut. Jelly-o topping dragée gummies tootsie roll carrot cake ice cream jelly-o dessert.
+        
+**Croissant candy cheesecake I love biscuit cookie halvah danish muffin.**
+        
     1. Brownie jelly marshmallow gummies ice cream I love pie. 
     2. Wafer I love croissant cake gummies liquorice muffin biscuit icing. Jelly-o tootsie roll sweet marshmallow candy wafer. 
     3. Candy canes chupa chups marshmallow I love cake marzipan. Soufflé I love jujubes chocolate cake apple pie gummi bears jujubes. 
     4. Macaroon cookie chupa chups wafer dragée toffee cookie.
-    
-    Fruitcake dragée danish biscuit sweet carrot cake toffee. Icing wafer chocolate bar donut cheesecake halvah sesame snaps. Brownie gummi bears chocolate cake I love wafer cake cake. Brownie I love gummies soufflé wafer marshmallow gummies. Marzipan jelly beans lemon drops tootsie roll cotton candy tiramisu cheesecake soufflé sweet roll. Cookie I love muffin I love jelly dragée toffee marzipan. Pie soufflé I love lollipop tart chocolate cake dragée jujubes sesame snaps.
-    
-    [![next-btn](https://img.shields.io/static/v1?label=&message=Next%20Page&color=E34F26&logo=accenture&logoColor=FFFFFF)](https://codepen.io/FullstackAcademy/pen/yEVryM)
+        
+Fruitcake dragée danish biscuit sweet carrot cake toffee. Icing wafer chocolate bar donut cheesecake halvah sesame snaps. Brownie gummi bears chocolate cake I love wafer cake cake. Brownie I love gummies soufflé wafer marshmallow gummies. Marzipan jelly beans lemon drops tootsie roll cotton candy tiramisu cheesecake soufflé sweet roll. Cookie I love muffin I love jelly dragée toffee marzipan. Pie soufflé I love lollipop tart chocolate cake dragée jujubes sesame snaps.
+        
+![next-btn](https://img.shields.io/static/v1?label=&message=Next%20Page&color=E34F26&logo=accenture&logoColor=FFFFFF)
     `;
 
     const assignment2 = await Assignment.create({

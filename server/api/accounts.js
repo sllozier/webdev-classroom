@@ -86,6 +86,7 @@ router.get("/:id/classes", async (req, res, next) => {
 //Get single class for user
 router.get("/:id/classes/:classId", async (req, res, next) => {
   try {
+    //console.log("ROUTE CLASS PARAMS", req.params);
     const singleClass = await Class.findByPk(req.params.classId, {
       include: [Announcement, Module],
     });
@@ -188,7 +189,7 @@ router.get(
           classId: req.params.classId,
         },
       });
-      console.log("MODULES ROUTE", modules);
+
       res.send(modules);
     } catch (error) {
       next(error);
@@ -198,14 +199,36 @@ router.get(
 
 //Get single module for single class for user
 router.get(
-  "/:id/classes/:classId/module/:moduleId",
+  "/:id/modules/:moduleId",
 
   async (req, res, next) => {
     try {
       const singleModule = await Module.findByPk(req.params.moduleId, {
         include: [Assignment],
       });
+
       res.send(singleModule);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+//Assignments
+//get all assignments
+router.get(
+  "/:id/modules/:moduleId/assignments",
+
+  async (req, res, next) => {
+    try {
+      //console.log("ASSIGNMENTS ROUTE", req.params);
+      const assignments = await Assignment.findAll({
+        where: {
+          moduleId: req.params.moduleId,
+        },
+      });
+      //console.log("ASSIGNMENTS ROUTE", assignments[0]);
+      res.send(assignments);
     } catch (error) {
       next(error);
     }
@@ -214,7 +237,7 @@ router.get(
 
 //Get single assignment in module
 router.get(
-  "/:id/classes/module/:moduleId/assignments/:assignmentId",
+  "/:id/classes/:classId/module/:moduleId/assignments/:assignmentId",
 
   async (req, res, next) => {
     try {

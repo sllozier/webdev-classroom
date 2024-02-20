@@ -1,0 +1,63 @@
+/* Container for both Result and MarkedInput components */
+.result_container {
+  width: 50%;
+  height: 100%;
+  padding: 13px;
+  font-family: "Lato", sans-serif;
+}
+
+/* Title styling used in both Result and MarkedInput components */
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 1em;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(15, 15, 15, 0.3);
+}
+
+/* Specific to the ResultArea component */
+.result_area {
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+}
+
+/* Specific to the TextArea in MarkedInput component */
+.textArea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 17px;
+}
+
+/* Styling for the AppContainer component */
+.appContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styling for the EditorContainer component */
+.editorContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/* Additional styling if needed for the right border in MarkedInput */
+.container.markedInput {
+  border-right: 1.5px solid rgba(15, 15, 15, 0.4);
+}
+
+/* App title styling */
+.appTitle {
+  font-size: 25px;
+  font-weight: 700;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 1em;
+}

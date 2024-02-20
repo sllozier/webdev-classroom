@@ -1,0 +1,58 @@
+/* testSidebar.css */
+.drawer {
+  width: 260px; /* theme.sidebar.width value */
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.drawerOpen {
+  width: 260px; /* theme.sidebar.width value */
+  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1); /* Example transition, replace with actual values */
+}
+
+.drawerClose {
+  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1); /* Example transition, replace with actual values */
+  overflow-x: hidden;
+  width: 50px; /* Fixed value */
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px; /* theme.spacing(0, 1), assuming theme.spacing(4) */
+  background-color: #26262c; /* theme.sidebar.background (secondary color) */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  /* Additional mixin toolbar styles */
+}
+
+.logo {
+  max-width: 250px;
+  max-height: 55px;
+}
+
+/* Define styles for list, listItem, listItemIconOpen, listItemIconClose, listItemTextOpen, divider, and hidden */
+.divider {
+  background-color: #fff; /* Adjusted to contrast with the sidebar color, assuming theme.sidebar.color */
+  opacity: 0.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.listItemIconOpen,
+.listItemIconClose {
+  min-width: 35px;
+  color: inherit; /* Color for icons can be adjusted as needed */
+}
+
+.listItemIconClose {
+  margin-left: -5px;
+}
+
+.listItemTextOpen {
+  margin: 0;
+  white-space: normal;
+}

@@ -6,11 +6,12 @@ import { SendOutlined } from "@material-ui/icons";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
-import { fetchClassData } from "../../../store/reducers/accountSlice";
+
 import {
   fetchAnnouncements,
   addAnnouncement,
   fetchModules,
+  fetchClassData,
 } from "../../../store/reducers/accountSlice";
 import Announcement from "./Announcement";
 import ClassNavbar from "../navbar/ClassNavbar";
@@ -29,7 +30,7 @@ const CustomTabPanel = (props) => {
     >
       {value === index && (
         <Box sx={{ width: "100%" }}>
-          <Typography>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -105,72 +106,76 @@ const Class = () => {
     dispatch(fetchModules(account.id, params.id));
   }, [account.id, params.id, dispatch]);
 
-  console.log("MODULES", moduleList);
+  console.log("CLASS COMP");
 
   return (
     <>
       <ClassNavbar singleClass={singleClass} />
+      <div className="class_container">
+        <Box sx={{ width: "100%" }}>
+          <div className="class_boxContainer">
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+              }}
+            >
+              <Tabs
+                value={value}
+                onChange={handleTabChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Announcements" {...a11yProps(0)} />
+                <Tab label="Modules" {...a11yProps(1)} />
+              </Tabs>
+            </Box>
 
-      <Box sx={{ width: "100%" }}>
-        <Box
-          sx={{
-            borderBottom: 1,
-            borderBottomColor: "grey",
-            borderColor: "divider",
-          }}
-        >
-          <Tabs
-            value={value}
-            onChange={handleTabChange}
-            aria-label="basic tabs example"
-          >
-            <Tab label="Announcements" {...a11yProps(0)} />
-            <Tab label="Modules" {...a11yProps(1)} />
-          </Tabs>
+            <CustomTabPanel value={value} index={0}>
+              <div className="class">
+                <div className="class_nameBox">
+                  <div className="class_name">{singleClass.name}</div>
+                </div>
+                <form className="class_announce" onSubmit={handleSubmit}>
+                  <img src={account.image} alt="Account Image" />
+                  <input
+                    type="text"
+                    value={form.content}
+                    onChange={handleChange("content")}
+                    placeholder="Announce something to your class"
+                  />
+                  <IconButton type="submit">
+                    <SendOutlined />
+                  </IconButton>
+                </form>
+                {announcements?.map((announcement) => (
+                  <Announcement
+                    content={announcement.content}
+                    date={announcement.date}
+                    image={announcement.image}
+                    name={announcement.creatorName}
+                    key={announcement.id}
+                  />
+                ))}
+              </div>
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              <div className="class">
+                <ModuleList account={account} singleClass={singleClass} />
+                {/* {moduleList?.map((module) => (
+                  <ModuleList
+                    name={module.name}
+                    complete={module.isComplete}
+                    image={module.image}
+                    description={module.description}
+                    key={module.id}
+                  />
+                ))} */}
+              </div>
+            </CustomTabPanel>
+          </div>
         </Box>
-        <CustomTabPanel value={value} index={0}>
-          <div className="class">
-            <div className="class_nameBox">
-              <div className="class_name">{singleClass.name}</div>
-            </div>
-            <form className="class_announce" onSubmit={handleSubmit}>
-              <img src={account.image} alt="Account Image" />
-              <input
-                type="text"
-                value={form.content}
-                onChange={handleChange("content")}
-                placeholder="Announce something to your class"
-              />
-              <IconButton type="submit">
-                <SendOutlined />
-              </IconButton>
-            </form>
-            {announcements?.map((announcement) => (
-              <Announcement
-                content={announcement.content}
-                date={announcement.date}
-                image={announcement.image}
-                name={announcement.creatorName}
-                key={announcement.id}
-              />
-            ))}
-          </div>
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          <div className="class">
-            {moduleList?.map((module) => (
-              <ModuleList
-                name={module.name}
-                complete={module.isComplete}
-                image={module.image}
-                description={module.description}
-              />
-            ))}
-          </div>
-        </CustomTabPanel>
-      </Box>
 
-      {/* <div className="class">
+        {/* <div className="class">
         <div className="class_nameBox">
           <div className="class_name">{singleClass.name}</div>
         </div>
@@ -196,6 +201,7 @@ const Class = () => {
           />
         ))}
       </div> */}
+      </div>
     </>
   );
 };
